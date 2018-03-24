@@ -14,8 +14,8 @@ describe('user creation page', function () {
     this.models = require('../../app/models');
 
     return Bluebird.all([
-      this.models.Task.destroy({ truncate: true }),
-      this.models.User.destroy({ truncate: true })
+      this.models.Task.destroy({ truncate: { cascade: true } }),
+      this.models.User.destroy({ truncate: { cascade: true } })
     ]);
   });
 

@@ -4,12 +4,12 @@ var expect = require('expect.js');
 
 describe('models/task', function () {
   before(function () {
-      return require('../../models').sequelize.sync();
+      return require('../../app/models').sequelize.sync();
   });
 
   beforeEach(function () {
-    this.User = require('../../models').User;
-    this.Task = require('../../models').Task;
+    this.User = require('../../app/models').User;
+    this.Task = require('../../app/models').Task;
   });
 
   describe('create', function () {
