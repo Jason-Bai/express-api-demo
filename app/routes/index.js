@@ -1,16 +1,12 @@
-var models  = require('../models');
-var express = require('express');
-var router  = express.Router();
+const homeRouter = require('./home');
+const userRouter = require('./user');
 
-router.get('/', function(req, res) {
-  models.User.findAll({
-    include: [ models.Task ]
-  }).then(function(users) {
-    res.render('index', {
-      title: 'Sequelize: Express Example',
-      users: users
-    });
-  });
-});
-
-module.exports = router;
+module.exports = (app) => {
+  const time = Date.now();
+  return () => {
+    // 首页
+    app.use('/', homeRouter);
+    // 用户
+    app.use('/users', userRouter);
+  };
+};

@@ -1,4 +1,4 @@
-const config = require('./common.js');
+const config = require('./base.js');
 
 // db configurations
 config.db.host = '127.0.0.1';
