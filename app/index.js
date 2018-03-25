@@ -5,10 +5,6 @@ const globalRouters = require('./routes');
 
 const app = express();
 
-// view engine setup
-app.set('views', U.path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-
 // 配置全局中间件
 globalMiddlewares(app)();
 

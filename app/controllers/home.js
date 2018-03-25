@@ -4,10 +4,11 @@ const index = function index(req, res) {
   models.User.findAll({
     include: [ models.Task ]
   }).then(function(users) {
-    res.render('index', {
+    const json = {
       title: 'Sequelize: Express Example',
-      users: users
-    });
+      users: users,
+    };
+    res.status(200).json(json)
   });
 };
 
