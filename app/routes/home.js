@@ -1,16 +1,9 @@
-const models  = require('../models');
 const express = require('express');
+const HomeCtrl = require('../controllers/home');
 const router  = express.Router();
 
-router.get('/', function(req, res) {
-  models.User.findAll({
-    include: [ models.Task ]
-  }).then(function(users) {
-    res.render('index', {
-      title: 'Sequelize: Express Example',
-      users: users
-    });
-  });
-});
+const [index] = ['index'].map((method) => HomeCtrl[method]);
+
+router.get('/', index);
 
 module.exports = router;
