@@ -3,10 +3,9 @@ const logger = require('morgan');
 const U = require('../lib/utils');
 
 const getLogger = () => {
-  const env = U.getEnv();
-  const isDev = env === 'development';
-  const isTest = env === 'test';
-  const isProd = env === 'production';
+  const isDev = U.isDev;
+  const isTest = U.isTest;
+  const isProd = U.isProd;
 
   const morgan = {
     format: 'dev',
