@@ -9,5 +9,7 @@ const exec = util.promisify(childProcess.exec);
 /* eslint no-unused-vars: 0 */
 const tencentOnline = schedule.scheduleJob('5 */1 * * * *', async () => {
   const cmdFile = './bin/tencent_im_online.js';
-  await exec(cmdFile);
+  const { error, stdout } = await exec(cmdFile);
+  console.log(`Error: ${error}`);
+  console.log(`Stdout: ${stdout}`);
 });

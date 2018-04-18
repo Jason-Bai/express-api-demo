@@ -1,91 +1,115 @@
-module.exports = (sequelize, DataTypes) => {
-  const ImOnline = sequelize.define('ImOnline', {
+const U = require('../lib/utils');
+const ModelBase = require('./base');
+const config = require('../configs');
+
+const { dateTimeFormat } = config;
+
+const Sequelize = U.rest.Sequelize;
+
+module.exports = (sequelize) => {
+  const ImOnline = U._.extend(sequelize.define('imonline', {
     id: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
     },
     type: {
-      type: DataTypes.ENUM('predicted', 'predicting'),
+      type: Sequelize.ENUM,
+      allowNull: false,
+      values: ['predicted', 'predicting'],
       defaultValue: 'predicted',
     },
     predictably: {
-      type: DataTypes.TEXT,
-      set: (val) => {
-        this.setDataValue('predictably', JSON.stringify(val || []));
+      type: Sequelize.STRING,
+      set(val) {
+        this.setDataValue('predictably', JSON.stringify(val));
       },
-      get: () => {
-        let val = this.getDataValue('predictably');
+      get() {
         try {
-          val = JSON.parse(val);
-        } catch (e) { /* ignore */ }
-        return val || [];
+          return JSON.parse(this.getDataValue('predictably'));
+        } catch (e) {
+          return [];
+        }
       },
     },
     number: {
-      type: DataTypes.STRING(5),
+      type: Sequelize.type('string', 5),
       allowNull: false,
       comment: '开奖期数',
     },
     current: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
       comment: '当前人数',
     },
     history: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
       comment: '历史最高',
     },
     date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      comment: '当前日期',
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.NOW,
+      get() {
+        return U.moment(this.getDataValue('date')).format(dateTimeFormat);
+      },
     },
     quarter: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
-      comment: '季度',
+      comment: '开奖季度',
     },
     month: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
-      comment: '月份',
+      comment: '开奖月份',
     },
     weekday: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
-      comment: '星期几',
+      comment: '开奖周几',
     },
     hour: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
-      comment: '小时',
+      comment: '开奖小时',
     },
     minute: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
-      comment: '分钟',
+      comment: '开奖分钟',
     },
     result: {
-      type: DataTypes.STRING(5),
+      type: Sequelize.type('string', 5),
       allowNull: false,
-      comment: '人数结果',
-    },
-    isDelete: {
-      type: DataTypes.ENUM('yes', 'no'),
-      defaultValue: 'no',
+      comment: '开奖结果',
     },
   }, {
-    comment: 'QQ在线人数',
+    comment: 'QQ在线人数表',
     freezeTableName: true,
-    tableName: 'imonline',
-    classMethods: {
-      async list() {
-        return [];
-      },
-      attributes: ['id', 'type', 'predictably', 'number', 'current', 'date', 'result', 'createdAt'],
+    hooks: {},
+    instanceMethods: {},
+    classMethods: {},
+
+  }), ModelBase, {
+    sort: {
+      default: 'createdAt',
+      allow: ['id', 'type', 'date', 'updatedAt', 'createdAt'],
     },
+    writableCols: [
+      'type', 'number', 'current',
+      'history', 'date', 'quarter', 'month',
+      'weekday', 'hour', 'minute', 'result',
+    ],
+    editableCols: [],
+    /** 只有管理员才可以修改的字段 */
+    onlyAdminCols: ['type', 'predictably'],
+
+    /** 定义允许包含返回的字段，不设置为全部 */
+    allowIncludeCols: [
+      'type', 'number', 'current', 'date', 'result',
+    ],
   });
+
   return ImOnline;
 };
