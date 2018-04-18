@@ -19,4 +19,7 @@ module.exports = (r) => {
 
   /** 用户接口 */
   r.resource('user');
+
+  /** QQ在线人数接口  */
+  r.get('/imonlines', 'imonline#list');
 };
