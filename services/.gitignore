@@ -37,3 +37,6 @@ node_modules
 
 build
 .nyc_output
+
+# Remove package-lock.json
+package-lock.json
