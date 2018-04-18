@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    type: {
+    status: {
       type: Sequelize.ENUM,
       allowNull: false,
       values: ['predicted', 'predicting'],
@@ -89,20 +89,20 @@ module.exports = (sequelize) => {
   }), ModelBase, {
     sort: {
       default: 'createdAt',
-      allow: ['id', 'type', 'date', 'updatedAt', 'createdAt'],
+      allow: ['id', 'status', 'date', 'updatedAt', 'createdAt'],
     },
     writableCols: [
-      'type', 'current', 'history', 'date',
+      'status', 'current', 'history', 'date',
       'quarter', 'month', 'weekday', 'hour',
       'minute', 'result',
     ],
     editableCols: [],
     /** 只有管理员才可以修改的字段 */
-    onlyAdminCols: ['type', 'predictably'],
+    onlyAdminCols: ['status', 'predictably'],
 
     /** 定义允许包含返回的字段，不设置为全部 */
     allowIncludeCols: [
-      'type', 'current', 'date', 'result',
+      'status', 'current', 'date', 'result',
     ],
   });
 

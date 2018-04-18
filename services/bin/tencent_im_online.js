@@ -5,6 +5,8 @@ const config = require('../app/configs');
 
 const { dateTimeFormat } = config;
 
+const startAt = Date.now();
+
 const redis = config.redis || {};
 U.cached.init(redis.port, redis.host, redis.opts);
 U.model = U.openRestWithMysql(U.rest, `${__dirname}/../app`);
@@ -66,7 +68,22 @@ const getImOnline = (data) => {
   return imonline;
 };
 
-const main = () => {
+const exit = (error) => {
+  console.log(
+    'tencent_im_online finished at: %s, consume: %d ms',
+    new Date(),
+    Date.now() - startAt
+  );
+  if (error) {
+    console.error(error);
+    U.fs.writeFileSync(`${__filename}.failds.json`, JSON.stringify(error, null, 2));
+  }
+  setTimeout(() => {
+    process.exit(error ? 1 : 0);
+  }, 10);
+};
+
+const main = (callback) => {
   (async () => {
     const data = await getTencentOnline();
 
@@ -74,10 +91,12 @@ const main = () => {
 
     try {
       await ImOnline.create(imonline);
-    } catch (err) {
-      console.error('Error: ', err);
+    } catch (error) {
+      return callback(error);
     }
+
+    return callback();
   })();
 };
 
-main();
+main(exit);
