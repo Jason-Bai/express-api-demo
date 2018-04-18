@@ -84,7 +84,7 @@ module.exports = (sequelize, DataTypes) => {
       async list() {
         return [];
       },
-      attributes: ['id', 'current', 'date', 'result', 'createdAt'],
+      attributes: ['id', 'type', 'predictably', 'number', 'current', 'date', 'result', 'createdAt'],
     },
   });
   return ImOnline;

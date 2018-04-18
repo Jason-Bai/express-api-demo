@@ -1,6 +1,6 @@
 module.exports = {
   service: {
-    name: 'express-api-demo',
+    name: 'tencent_im_online',
     version: '0.0.1',
     ip: '127.0.0.1',
     port: 3001,
