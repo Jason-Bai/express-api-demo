@@ -32,11 +32,6 @@ module.exports = (sequelize) => {
         }
       },
     },
-    number: {
-      type: Sequelize.type('string', 5),
-      allowNull: false,
-      comment: '开奖期数',
-    },
     current: {
       type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
@@ -97,9 +92,9 @@ module.exports = (sequelize) => {
       allow: ['id', 'type', 'date', 'updatedAt', 'createdAt'],
     },
     writableCols: [
-      'type', 'number', 'current',
-      'history', 'date', 'quarter', 'month',
-      'weekday', 'hour', 'minute', 'result',
+      'type', 'current', 'history', 'date',
+      'quarter', 'month', 'weekday', 'hour',
+      'minute', 'result',
     ],
     editableCols: [],
     /** 只有管理员才可以修改的字段 */
@@ -107,7 +102,7 @@ module.exports = (sequelize) => {
 
     /** 定义允许包含返回的字段，不设置为全部 */
     allowIncludeCols: [
-      'type', 'number', 'current', 'date', 'result',
+      'type', 'current', 'date', 'result',
     ],
   });
 

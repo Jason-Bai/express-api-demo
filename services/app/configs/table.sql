@@ -100,7 +100,6 @@ CREATE TABLE `imonline` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` enum('predicted','predicting') NOT NULL DEFAULT 'predicted',
   `predictably` text,
-  `number` varchar(5) NOT NULL,
   `current` int(11) NOT NULL,
   `history` int(11) NOT NULL,
   `date` datetime NOT NULL,

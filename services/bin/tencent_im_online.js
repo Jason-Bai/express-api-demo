@@ -49,13 +49,10 @@ const getImOnline = (data) => {
 
   const minute = date.minute();
 
-  const number = ((hour * 60) + minute).toString().padStart(4, '0');
-
   const result = getResult(current);
 
   const imonline = {
     date: date.format(dateTimeFormat),
-    number,
     current,
     history,
     quarter,
