@@ -1,4 +1,4 @@
-const tableName = 'user';
+const tableName = 'imonline';
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -9,8 +9,20 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      username: {
-        type: Sequelize.STRING,
+      current: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        comment: '当前人数',
+      },
+      history: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        comment: '历史最高',
+      },
+      date: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        comment: '当前日期',
       },
       createdAt: {
         allowNull: false,
@@ -19,7 +31,7 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-      }
+      },
     });
 
     return createTable;

@@ -1,7 +1,10 @@
-const _         = require('lodash');
-const fs        = require('fs');
-const path      = require('path');
-const moment    = require('moment');
+const _ = require('lodash');
+const fs = require('fs');
+const path = require('path');
+const util = require('util');
+const moment = require('moment');
+const axios = require('axios');
+const async = require('async');
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -16,12 +19,15 @@ const utils = {
   _,
   fs,
   path,
+  util,
   moment,
   dateFormat,
   timeFormat,
   isDev,
   isTest,
   isProd,
+  axios,
+  async,
 };
 
 const U = Object.assign({}, utils);
