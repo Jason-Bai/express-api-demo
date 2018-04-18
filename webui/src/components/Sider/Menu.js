@@ -11,12 +11,6 @@ const AppMenu = () => {
           <span>Home</span>
         </Link>
       </Menu.Item>
-      <Menu.Item key="2">
-        <Link to="/shops">
-          <Icon type="shop" />
-          <span>Shops</span>
-        </Link>
-      </Menu.Item>
     </Menu>
   );
 };

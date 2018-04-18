@@ -1,7 +1,6 @@
 import React from 'react'
 import { Switch } from 'react-router-dom'
 import Home from './containers/Home';
-import Shops from './containers/Shops';
 import NotFound from './components/NotFound';
 import SubRoute from './components/SubRoute';
 
@@ -10,10 +9,6 @@ const routes = [{
   path: '/',
   exact: true,
   component: Home,
-}, {
-  title: 'Shop',
-  path: '/shops',
-  component: Shops,
 }, {
   component: NotFound,
 }];

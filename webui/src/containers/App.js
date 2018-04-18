@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Layout } from 'antd';
 import './App.css';
-import Sider from '../components/Sider';
 import Header from '../components/Header';
 import Routes from '../routes';
 
@@ -23,10 +22,9 @@ class App extends React.Component {
     return (
       <Router>
         <Layout className="wrapper-app">
-          <Sider collapsed={this.state.collapsed} />
+          <Header />
           <Layout>
-            <Header collapsed={this.state.collapsed} toggle={this.toggle} />
-            <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
+            <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 400 }}>
               <Routes />
             </Content>
           </Layout>
