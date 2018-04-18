@@ -5,6 +5,7 @@ const util = require('util');
 const moment = require('moment');
 const axios = require('axios');
 const async = require('async');
+const colors = require('colors');
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -28,6 +29,7 @@ const utils = {
   isProd,
   axios,
   async,
+  colors,
 };
 
 const U = Object.assign({}, utils);
