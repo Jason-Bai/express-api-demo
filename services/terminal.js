@@ -2,6 +2,9 @@
 
 const schedule = require('node-schedule');
 const U = require('./app/lib/utils');
+const config = require('./app/configs');
+
+const { dateTimeFormat } = config;
 
 const stack = [];
 
@@ -92,17 +95,15 @@ const refresh = async () => {
   return stack;
 };
 
-let index = 1;
-
 const main = async () => {
   const list = await init();
-  console.log(`--------------------------${index++}--------------------------`);
+  console.log(`---------------------${U.moment().format(dateTimeFormat)}---------------------`);
   console.log(list.join('\n'));
 };
 
 schedule.scheduleJob('5 */1 * * * *', async () => {
   const list = await refresh();
-  console.log(`--------------------------${index++}--------------------------`);
+  console.log(`---------------------${U.moment().format(dateTimeFormat)}---------------------`);
   console.log(list.join('\n'));
 });
 
