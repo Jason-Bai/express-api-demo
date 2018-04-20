@@ -19,19 +19,6 @@ module.exports = (sequelize) => {
       values: ['predicted', 'predicting'],
       defaultValue: 'predicted',
     },
-    predictably: {
-      type: Sequelize.STRING,
-      set(val) {
-        this.setDataValue('predictably', JSON.stringify(val));
-      },
-      get() {
-        try {
-          return JSON.parse(this.getDataValue('predictably'));
-        } catch (e) {
-          return [];
-        }
-      },
-    },
     current: {
       type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
@@ -98,7 +85,7 @@ module.exports = (sequelize) => {
     ],
     editableCols: [],
     /** 只有管理员才可以修改的字段 */
-    onlyAdminCols: ['status', 'predictably'],
+    onlyAdminCols: ['status'],
 
     /** 定义允许包含返回的字段，不设置为全部 */
     allowIncludeCols: [

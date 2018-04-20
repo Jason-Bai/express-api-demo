@@ -99,7 +99,6 @@ DROP TABLE IF EXISTS `imonline`;
 CREATE TABLE `imonline` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` enum('predicted','predicting') NOT NULL DEFAULT 'predicted',
-  `predictably` text,
   `current` int(11) NOT NULL,
   `history` int(11) NOT NULL,
   `date` datetime NOT NULL,
