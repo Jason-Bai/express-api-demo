@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-import Table from '../../components/Table';
-import Number from '../../components/Number';
+import Table from 'components/Table';
+import Number from 'components/Number';
 
 const renderNumber = (number) => {
   const render = (index, record) => {

@@ -1,4 +1,4 @@
-import fetch from '../utils/fetch';
+import fetch from 'utils/fetch';
 
 const list = (params) => {
   const config = {

@@ -92,8 +92,6 @@ module.exports = {
     'POST /session',
     // 允许注册
     'POST /users',
-    // 允许查看QQ在线人数列表:
-    'GET /imonlines',
   ],
 
   /** 允许的语言 */

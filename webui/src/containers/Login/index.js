@@ -1,8 +1,8 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import './login.css';
-import LoginAPI from '../../api/login';
-import { isTokenValid, isUserValid, setToken, setUser } from '../../utils/auth';
+import LoginAPI from 'apis/login';
+import { isAuthed, setToken, setUser } from 'utils/auth';
 
 import { Form, Icon, Input, Button } from 'antd';
 const FormItem = Form.Item;
@@ -12,17 +12,15 @@ class Login extends React.Component {
     super(props);
     this.state = {
       error: null,
+      redirectToReferrer: false,
     };
   }
 
   componentWillMount() {
-    const tokenValid = isTokenValid();
+    const authed = isAuthed();
 
-    const userValid = isUserValid();
-
-    if (tokenValid && userValid) {
-      this.props.history.push('/app');
-      return;
+    if (authed) {
+      this.props.history.push('/');
     }
   }
 
@@ -30,13 +28,12 @@ class Login extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
         LoginAPI.login(values).then(({ data }) => {
           const { auth }= data;
           setToken(auth);
           setUser(data);
           setTimeout(() => {
-            this.props.history.push('/app');
+            this.setState({ redirectToReferrer: true })
           }, 100);
         }).catch((error) => {
           this.setState({
@@ -49,6 +46,13 @@ class Login extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
+
+    const { from } = this.props.location.state || { from: { pathname: "/" } };
+    const { redirectToReferrer } = this.state;
+
+    if (redirectToReferrer) {
+      return <Redirect to={from} />
+    }
 
     return (
       <div className="login-form">

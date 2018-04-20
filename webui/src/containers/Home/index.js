@@ -1,8 +1,8 @@
 import React from 'react';
 import NodeSchedule from 'node-schedule';
-import Helmet from '../../components/Helmet';
+import Helmet from 'components/Helmet';
 import ImOnlineTable from './ImOnlineTable';
-import HomeAPI from '../../api/home';
+import HomeAPI from 'apis/home';
 import './home.css';
 
 const metas = [{

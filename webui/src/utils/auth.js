@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import moment from 'moment';
 
 const userKey = 'user';
@@ -44,6 +43,8 @@ export const isUserValid = () => {
 
   return true;
 };
+
+export const isAuthed = () => isTokenValid() && isUserValid();
 
 export const setToken = ({ token, refreshToken, expiredAt }) => {
   store.setItem(tokenKey, token);

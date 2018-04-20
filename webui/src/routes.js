@@ -1,20 +1,21 @@
 import React from 'react'
 import { Switch } from 'react-router-dom'
-import Home from './containers/Home';
-import Login from './containers/Login';
-import NotFound from './components/NotFound';
-import SubRoute from './components/SubRoute';
+import Home from 'containers/Home';
+import Login from 'containers/Login';
+import NotFound from 'components/NotFound';
+import Route from 'components/Route';
 
-const routes = [{
+export const routes = [{
+  title: 'Home',
+  path: '/',
+  exact: true,
+  component: Home,
+  isPrivate: true,
+}, {
   title: 'Login',
   path: '/login',
   exact: true,
   component: Login,
-}, {
-  title: 'Home',
-  path: '/app',
-  exact: true,
-  component: Home,
 }, {
   component: NotFound,
 }];
@@ -22,7 +23,7 @@ const routes = [{
 const Routes = () => (
   <Switch>
     {routes.map((route, i) => (
-      <SubRoute key={i} {...route} />
+      route.isPrivate ? <Route.PrivateRoute key={i} {...route} /> : <Route.SubRoute key={i} {...route} />
     ))}
   </Switch>
 );
