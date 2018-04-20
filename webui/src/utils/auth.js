@@ -1,8 +1,10 @@
+import _ from 'lodash';
 import moment from 'moment';
 
+const userKey = 'user';
 const tokenKey = 'token';
 const refreshTokenKey = 'refreshToken';
-const expiredAtKey = 'token';
+const expiredAtKey = 'expiredAt';
 
 const store = localStorage;
 
@@ -28,11 +30,35 @@ export const isTokenValid = () => {
   return true;
 };
 
+export const isUserValid = () => {
+  const user = store.getItem('user');
+  if (!user) {
+    return false;
+  }
+
+  try {
+    JSON.parse(user);
+  } catch (e) {
+    return false;
+  }
+
+  return true;
+};
+
 export const setToken = ({ token, refreshToken, expiredAt }) => {
   store.setItem(tokenKey, token);
   store.setItem(refreshTokenKey, refreshToken);
   store.setItem(expiredAtKey, expiredAt);
 };
+
+export const setUser = (user) => {
+  store.setItem(userKey, JSON.stringify(user));
+}
+
+export const getUser = () => {
+  const user = JSON.parse(store.getItem(userKey));
+  return user;
+}
 
 export const removeToken = () => {
   store.removeItem(tokenKey);

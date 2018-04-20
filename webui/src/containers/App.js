@@ -4,18 +4,26 @@ import { Layout } from 'antd';
 import './App.css';
 import Header from '../components/Header';
 import Routes from '../routes';
+import { isTokenValid, isUserValid } from '../utils/auth';
+import history from '../utils/history';
 
 const { Content } = Layout;
 
 class App extends React.Component {
-  state = {
-    collapsed: true,
-  }
+  componentWillMount() {
+    const tokenValid = isTokenValid();
 
-  toggle = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
+    if (!tokenValid) {
+      history.push('/login');
+      return;
+    }
+
+    const userValid = isUserValid();
+
+    if (!userValid) {
+      history.push('/login');
+      return;
+    }
   }
 
   render() {
@@ -34,4 +42,4 @@ class App extends React.Component {
   }
 }
 
-export default App
+export default App;
