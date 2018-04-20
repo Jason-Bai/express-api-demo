@@ -1,9 +1,10 @@
 import axios from 'axios'
 import { getToken } from './auth';
+import { getError } from './error';
 
 // create an axios instance
 const service = axios.create({
-  baseURL: process.env.BASE_API || '/', // api的base_url
+  baseURL: process.env.BASE_API || '/api_v1', // api的base_url
   timeout: 5000 // request timeout
 })
 
@@ -15,8 +16,8 @@ service.interceptors.request.use(
     }
     return config;
   },
-  err => {
-    return Promise.reject(err);
+  error => {
+    return Promise.reject(error);
   });
 
 // http response 拦截器
@@ -31,21 +32,16 @@ service.interceptors.response.use(
           if (console && console.error) {
             console.error(401);
           }
-          /*
-          router.replace({
-            path: 'login'
-            //query: {redirect: router.currentRoute.fullPath}
-          })
-          */
           break;
         default:
           if (console && console.error) {
-            console.error(401);
+            console.error('default');
           }
           break;
       }
     }
-    return Promise.reject(error.response.data)
+    const err = getError(error);
+    return Promise.reject(err);
   });
 
 export default service;

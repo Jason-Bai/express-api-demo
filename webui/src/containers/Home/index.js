@@ -16,14 +16,14 @@ class Home extends React.Component {
     this.state = {
       error: null,
       page: 1,
-      pageSize: 10,
+      pageSize: 15,
       dataSource: [],
       total: 0,
     };
   }
 
   componentWillMount() {
-    this.getList();
+    this.getList(this.state.page, this.state.pageSize);
   }
 
   componentDidMount() {
@@ -38,7 +38,7 @@ class Home extends React.Component {
     }
   }
 
-  getList = (page = 1, pageSize = 10) => {
+  getList = (page = this.state.page, pageSize = this.state.pageSize) => {
     const startIndex = (page - 1) * pageSize;
     const maxResults = pageSize;
 
@@ -63,7 +63,7 @@ class Home extends React.Component {
     });
   }
 
-  onPageChanged = (page = 1, pageSize = 10) => {
+  onPageChanged = (page = this.state.page, pageSize = this.state.pageSize) => {
     this.getList(page, pageSize);
   };
 
