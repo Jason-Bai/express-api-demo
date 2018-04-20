@@ -1,17 +1,18 @@
 import axios from 'axios'
+import { getToken } from './auth';
 
-// axios 配置 config.js
-//axios.defaults.timeout = 5000;
-//axios.defaults.baseURL = 'https://api.github.com';
-//axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+// create an axios instance
+const service = axios.create({
+  baseURL: process.env.BASE_API || '/', // api的base_url
+  timeout: 5000 // request timeout
+})
 
-axios.interceptors.request.use(
+service.interceptors.request.use(
   config => {
-    /*
-        if ($.cookie("token")) {
-            config.headers._token = $.cookie("token");
-        }
-        */
+    const token = getToken();
+    if (token) {
+      config.headers['x-auth-token'] = token;
+    }
     return config;
   },
   err => {
@@ -19,35 +20,32 @@ axios.interceptors.request.use(
   });
 
 // http response 拦截器
-axios.interceptors.response.use(
+service.interceptors.response.use(
   response => {
-    /*
-        if (response.data.code == 2) {
-            window.location.href = "/#/login";
-            $.cookie("user", null);
-            $.cookie("token", null);
-            return "";
-        } else {
-            return response;
-        }
-        */
     return response;
   },
   error => {
-    /*
-        if (error.response) {
-            switch (error.response.status) {
-                case 401:
-  // 401 清除token信息并跳转到登录页面
-                    store.commit(types.LOGOUT);
-                    router.replace({
-                        path: 'login'
-                      //query: {redirect: router.currentRoute.fullPath}
-                    })
-            }
-        }
-        */
+    if (error.response) {
+      switch (error.response.status) {
+        case 401:
+          if (console && console.error) {
+            console.error(401);
+          }
+          /*
+          router.replace({
+            path: 'login'
+            //query: {redirect: router.currentRoute.fullPath}
+          })
+          */
+          break;
+        default:
+          if (console && console.error) {
+            console.error(401);
+          }
+          break;
+      }
+    }
     return Promise.reject(error.response.data)
   });
 
-export default axios;
+export default service;
