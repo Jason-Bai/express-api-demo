@@ -84,20 +84,20 @@ const translate = (tencent) => {
   const { current, history, nums, createdAt } = tencent;
   const result = nums.join('');
 
-  const d = U.moment(createdAt);
+  const date = U.moment(createdAt);
 
-  const quarter = d.quarter();
+  const quarter = date.quarter();
 
-  const month = d.month() + 1;
+  const month = date.month() + 1;
 
-  const weekday = d.weekday();
+  const weekday = date.weekday();
 
-  const hour = d.hours();
+  const hour = date.hours();
 
-  const minute = d.minutes();
+  const minute = date.minutes();
 
   const imonline = {
-    date: createdAt,
+    date: date.format(),
     current,
     history,
     quarter,
