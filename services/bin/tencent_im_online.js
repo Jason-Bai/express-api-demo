@@ -43,7 +43,7 @@ const getImOnline = (data) => {
 
   const weekday = U.moment().weekday();
 
-  const date = U.moment().format();
+  const date = U.moment();
 
   const hour = date.hour();
 
@@ -52,7 +52,7 @@ const getImOnline = (data) => {
   const result = getResult(current);
 
   const imonline = {
-    date,
+    date: date.format(),
     current,
     history,
     quarter,
