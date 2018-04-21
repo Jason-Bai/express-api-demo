@@ -1,0 +1,29 @@
+.wrapper-user {
+  width: 120px;
+  cursor: pointer;
+}
+.wrapper-user .user-hd {
+  overflow: hidden;
+  clear: both;
+}
+.wrapper-user .user-hd .user-avatar {
+  float: left;
+  width: 30px;
+}
+.wrapper-user .user-hd .user-name {
+  float: left;
+  width: 80px;
+  text-align: center;
+  overflow: hidden;
+  font-size: 16px;
+  font-weight: bold;
+  color: #FFFFFF;
+  font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+.user-menu {
+  overflow: hidden;
+}
+.user-menu li.user-menu-item {
+  padding: 10px;
+  text-align: center;
+}

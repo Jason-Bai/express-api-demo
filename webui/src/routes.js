@@ -2,7 +2,9 @@ import React from 'react'
 import { Switch } from 'react-router-dom'
 import Home from 'containers/Home';
 import Dashboard from 'containers/Dashboard';
+import Profile from 'containers/Profile';
 import Login from 'containers/Login';
+import Logout from 'containers/Logout';
 import NotFound from 'components/NotFound';
 import Route from 'components/Route';
 
@@ -16,16 +18,25 @@ export const routes = [{
 }, {
   title: 'Dashboard',
   path: '/dashboard',
-  exact: true,
   component: Dashboard,
   isPrivate: true,
   isMenu: true,
 }, {
+  title: 'Profile',
+  path: '/profile',
+  component: Profile,
+  isPrivate: true,
+  isMenu: false,
+}, {
   title: 'Login',
   path: '/login',
-  exact: true,
   isMenu: false,
   component: Login,
+}, {
+  title: 'Logout',
+  path: '/logout',
+  isMenu: false,
+  component: Logout,
 }, {
   component: NotFound,
 }];

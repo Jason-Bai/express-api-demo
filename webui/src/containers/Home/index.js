@@ -70,7 +70,7 @@ class Home extends React.Component {
   render() {
     const { page, pageSize, total, dataSource } = this.state;
     return (
-      <div className="wrapper-content">
+      <div className="wrapper-home">
         <Helmet title="首页" metas={metas} />
         <ImOnlineTable
           page={page}
