@@ -32,9 +32,6 @@ module.exports = (sequelize) => {
     date: {
       type: Sequelize.DATE,
       defaultValue: Sequelize.NOW,
-      get() {
-        return U.moment(this.getDataValue('date')).format(dateTimeFormat);
-      },
     },
     quarter: {
       type: Sequelize.INTEGER.UNSIGNED,
