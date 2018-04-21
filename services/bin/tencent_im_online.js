@@ -3,8 +3,6 @@
 const U = require('../app/lib/utils');
 const config = require('../app/configs');
 
-const { dateTimeFormat } = config;
-
 const startAt = Date.now();
 
 const redis = config.redis || {};
@@ -54,7 +52,7 @@ const getImOnline = (data) => {
   const result = getResult(current);
 
   const imonline = {
-    date: date.format(dateTimeFormat),
+    date,
     current,
     history,
     quarter,
