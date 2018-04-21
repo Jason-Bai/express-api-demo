@@ -47,7 +47,14 @@ class ImOnlineTable extends React.Component {
       dataIndex: 'id',
       key: 'id',
       width: '12%',
-      render: (id, record) => <span>{moment(record.date).format('YYYYMMDDHHmmss')}</span>,
+      render: (id, record) => {
+        const { date } = record;
+        const d = moment(date).utc().add(8, 'hours');
+        const number = (d.hours() * 60 + d.minutes()).toString().padStart(4, '0');
+        return (
+          <span>{moment(record.date).format(`YYYYMMHH${number}`)}</span>
+        );
+      },
     }, {
       title: '开奖期数',
       dataIndex: 'date',
@@ -56,8 +63,8 @@ class ImOnlineTable extends React.Component {
       width: '8%',
       render: (id, record) => {
         const { date } = record;
-        const n = new Date(date);
-        const number = n.getHours() * 60 + n.getMinutes();
+        const d = moment(date).utc().add(8, 'hours');
+        const number = d.hours() * 60 + d.minutes();
         return (
           <span>
           {number.toString().padStart(4, '0')}
