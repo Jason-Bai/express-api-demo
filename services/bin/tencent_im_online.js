@@ -43,7 +43,7 @@ const getImOnline = (data) => {
 
   const weekday = U.moment().weekday();
 
-  const date = U.moment();
+  const date = U.moment().format();
 
   const hour = date.hour();
 
