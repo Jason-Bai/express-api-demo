@@ -2,6 +2,7 @@ import React from 'react'
 import { Switch } from 'react-router-dom'
 import Home from 'containers/Home';
 import Dashboard from 'containers/Dashboard';
+import Solution from 'containers/Solution';
 import Profile from 'containers/Profile';
 import Login from 'containers/Login';
 import Logout from 'containers/Logout';
@@ -19,6 +20,12 @@ export const routes = [{
   title: 'Dashboard',
   path: '/dashboard',
   component: Dashboard,
+  isPrivate: true,
+  isMenu: true,
+}, {
+  title: 'Solution',
+  path: '/solution',
+  component: Solution,
   isPrivate: true,
   isMenu: true,
 }, {

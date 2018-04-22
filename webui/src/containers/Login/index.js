@@ -36,7 +36,6 @@ componentWillMount() {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         LoginAPI.login(values).then(({ data }) => {
-          console.log(data);
           const { auth }= data;
           setToken(auth);
           setUser(data);

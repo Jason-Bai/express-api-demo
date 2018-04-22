@@ -9,6 +9,13 @@ const store = localStorage;
 
 export const getToken = () => store.getItem(tokenKey);
 
+export const removeToken = () => {
+  store.removeItem(tokenKey);
+  store.removeItem(refreshTokenKey);
+  store.removeItem(expiredAtKey);
+  store.removeItem(userKey);
+};
+
 const isTokenExpired = () => {
   const expiredAt = moment(store.getItem('expiredAt'));
   const now = moment();
@@ -23,6 +30,7 @@ export const isTokenValid = () => {
   const expired = isTokenExpired();
 
   if (expired) {
+    removeToken();
     return false;
   }
 
@@ -60,9 +68,3 @@ export const getUser = () => {
   const user = JSON.parse(store.getItem(userKey));
   return user;
 }
-
-export const removeToken = () => {
-  store.removeItem(tokenKey);
-  store.removeItem(refreshTokenKey);
-  store.removeItem(expiredAtKey);
-};
