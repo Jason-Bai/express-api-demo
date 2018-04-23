@@ -12,6 +12,7 @@ const util = require('util');
  * 3. 未完待续
  */
 const U = {};
+
 Object.keys(pkg.dependencies).forEach((k) => {
   /** 包名的中划线转成驼峰，方便通过点(.)来操作 */
   /* eslint-disable global-require, import/no-dynamic-require */
@@ -22,14 +23,19 @@ Object.keys(pkg.dependencies).forEach((k) => {
 U.rest = U.openRest;
 U._ = U.lodash;
 U.cached = U.openCache;
+U.util = util;
+U.path = path;
+U.fs = fs;
+
+U.mkdirp = (dir) => {
+  if (U.fs.existsSync(dir)) return null;
+  const parent = U.path.dirname(dir);
+  if (!U.fs.existsSync(parent)) U.mkdirp(parent);
+  return U.fs.mkdirSync(dir);
+};
+
 
 let utils = {
-  util,
-
-  path,
-
-  fs,
-
   hasOwnProperty: Object.prototype.hasOwnProperty,
 
   /**
@@ -71,13 +77,6 @@ let utils = {
       type: matches[1],
       data: new Buffer(matches[2], 'base64'),
     };
-  },
-
-  mkdirp: (dir) => {
-    if (U.fs.existsSync(dir)) return null;
-    const parent = U.path.dirname(dir);
-    if (!U.fs.existsSync(parent)) utils.mkdirp(parent);
-    return U.fs.mkdirSync(dir);
   },
 };
 

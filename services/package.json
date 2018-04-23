@@ -1,5 +1,5 @@
 {
-  "name": "open-rest-es6-boilerplate",
+  "name": "tencent-im-online",
   "version": "0.9.0",
   "description": "RESTful API boilerplate based on open-rest with mysql",
   "main": "index.js",
@@ -56,7 +56,7 @@
     "open-rest-helper-rest": "2.0.1",
     "open-rest-with-mysql": "0.1.1",
     "prompt": "^1.0.0",
-    "restspec": "3.0.0"
+    "restspec": "3.0.1"
   },
   "devDependencies": {
     "apidoc": "^0.16.1",

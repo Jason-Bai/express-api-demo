@@ -1,8 +1,5 @@
 const U = require('../lib/utils');
 const ModelBase = require('./base');
-const config = require('../configs');
-
-const { dateTimeFormat } = config;
 
 const Sequelize = U.rest.Sequelize;
 
