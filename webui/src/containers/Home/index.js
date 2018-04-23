@@ -34,6 +34,7 @@ class Home extends React.Component {
 
   componentUnMount() {
     if (this.schedule) {
+      this.schedule.cancel();
       this.schedule = null;
     }
   }
