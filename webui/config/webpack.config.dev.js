@@ -259,11 +259,4 @@ module.exports = {
   performance: {
     hints: false,
   },
-  // dev server
-  devServer: {
-    compress: true,
-    public: 'im.baiyu.com',
-    host: '0.0.0.0',
-    disableHostCheck: true,
-  },
 };
