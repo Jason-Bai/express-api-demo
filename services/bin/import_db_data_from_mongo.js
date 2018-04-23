@@ -154,6 +154,7 @@ const importImonlines = async (page) => {
     process.stdout.write('.');
     return true;
   } catch (err) {
+    process.stdout.write('F');
     return false;
   }
 };
