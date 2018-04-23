@@ -1,6 +1,6 @@
 import React from 'react';
 import { Chart, Geom, Axis, Tooltip } from 'bizcharts';
-import './imonlinestack.css';
+import './numberstack.css';
 
 const data = [
   { year: '1951 年', sales: 38 },
@@ -19,7 +19,7 @@ const cols = {
 class ImOnlineStack extends React.Component {
   render() {
     return (
-      <div className="wrapper-imonline-stack">
+      <div className="wrapper-number-stack">
         <Chart height={300} data={data} scale={cols} forceFit>
           <Axis name="year" />
           <Axis name="sales" />

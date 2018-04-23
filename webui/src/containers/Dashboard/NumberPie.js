@@ -1,7 +1,7 @@
 import React from 'react';
 import DataSet from '@antv/data-set';
 import { Chart, Axis, Geom, Tooltip, Coord, Legend, Label } from 'bizcharts';
-import './imonlinepie.css';
+import './numberpie.css';
 
 const { DataView } = DataSet;
 
@@ -30,10 +30,10 @@ const cols = {
   }
 };
 
-class ImOnlinePie extends React.Component {
+class NumberPie extends React.Component {
   render() {
     return (
-      <div className="wrapper-imonline-pie">
+      <div className="wrapper-number-pie">
         <Chart height={300} data={dv} scale={cols} padding={[ 80, 100, 80, 80 ]} forceFit>
           <Coord type='theta' radius={0.75} />
           <Axis name="percent" />
@@ -64,4 +64,4 @@ class ImOnlinePie extends React.Component {
   }
 }
 
-export default ImOnlinePie;
+export default NumberPie;

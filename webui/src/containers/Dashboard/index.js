@@ -3,8 +3,8 @@ import { Row, Col } from 'antd';
 import './dashboard.css';
 import InfoBoxes from './InfoBoxes';
 import ImOnlineLine from './ImOnlineLine';
-import ImOnlineStack from './ImOnlineStack';
-import ImOnlinePie from './ImOnlinePie';
+import NumberStack from './NumberStack';
+import NumberPie from './NumberPie';
 
 class Dashboard extends React.Component {
   render() {
@@ -14,10 +14,10 @@ class Dashboard extends React.Component {
         <ImOnlineLine />
         <Row gutter={16}>
           <Col span={12}>
-            <ImOnlineStack />
+            <NumberStack />
           </Col>
           <Col span={12}>
-            <ImOnlinePie />
+            <NumberPie />
           </Col>
         </Row>
       </div>
