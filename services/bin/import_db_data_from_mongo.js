@@ -81,7 +81,7 @@ const connect = (cb) => {
 
 // 转化数据
 const translate = (tencent) => {
-  const { current, history, nums, createdAt } = tencent;
+  const { no: number, current, history, nums, createdAt } = tencent;
   const result = nums.join('');
 
   const date = U.moment(createdAt);
@@ -95,10 +95,6 @@ const translate = (tencent) => {
   const hour = date.hours();
 
   const minute = date.minutes();
-
-  const currentNumber = ((hour * 60) + minute).toString().padStart(4, '0');
-
-  const number = date.format(`YYYYMMHH${currentNumber}`);
 
   const imonline = {
     date: date.format(),

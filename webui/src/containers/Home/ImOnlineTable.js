@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import Table from 'components/Table';
 import Number from 'components/Number';
 
@@ -43,34 +42,10 @@ class ImOnlineTable extends React.Component {
     ].map((number) => renderNumber(number));
 
     const beforeColumns =[{
-      title: '开奖时间',
-      dataIndex: 'id',
-      key: 'id',
-      width: '12%',
-      render: (id, record) => {
-        const { date } = record;
-        const d = moment(date).utc().add(8, 'hours');
-        const number = (d.hours() * 60 + d.minutes()).toString().padStart(4, '0');
-        return (
-          <span>{moment(record.date).format(`YYYYMMHH${number}`)}</span>
-        );
-      },
-    }, {
       title: '开奖期数',
-      dataIndex: 'date',
-      key: 'date',
-      className: 'text-center',
-      width: '8%',
-      render: (id, record) => {
-        const { date } = record;
-        const d = moment(date).utc().add(8, 'hours');
-        const number = d.hours() * 60 + d.minutes();
-        return (
-          <span>
-          {number.toString().padStart(4, '0')}
-          </span>
-        );
-      },
+      dataIndex: 'number',
+      key: 'number',
+      width: '12%',
     }, {
       title: '开奖结果',
       dataIndex: 'result',
