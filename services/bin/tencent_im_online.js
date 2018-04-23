@@ -51,7 +51,7 @@ const getImOnline = (data) => {
 
   const currentNumber = ((hour * 60) + minute).toString().padStart(4, '0');
 
-  const number = date.format(`YYYYMMHH${currentNumber}`);
+  const number = date.format(`YYYYMMDD${currentNumber}`);
 
   const result = getResult(current);
 
