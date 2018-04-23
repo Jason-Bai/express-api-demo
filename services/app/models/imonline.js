@@ -1,5 +1,6 @@
 const U = require('../lib/utils');
 const ModelBase = require('./base');
+const nextResult = require('../lib/next-result');
 
 const Sequelize = U.rest.Sequelize;
 
@@ -10,11 +11,11 @@ module.exports = (sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    status: {
-      type: Sequelize.ENUM,
+    number: {
+      type: Sequelize.type('string', 12),
       allowNull: false,
-      values: ['predicted', 'predicting'],
-      defaultValue: 'predicted',
+      unique: true,
+      comment: '开奖期数',
     },
     current: {
       type: Sequelize.INTEGER.UNSIGNED,
@@ -65,25 +66,41 @@ module.exports = (sequelize) => {
     freezeTableName: true,
     hooks: {},
     instanceMethods: {},
-    classMethods: {},
+    classMethods: {
+      async nextResultByWeekdayHourMinute({ weekday, hour, minute }) {
+        const attributes = ['result'];
+
+        const where = {
+          weekday,
+          hour,
+          minute,
+        };
+
+        const imonlines = await ImOnline.findAll({ attributes, where });
+
+        const stats = nextResult.weekdayHourMinute(imonlines);
+
+        return stats;
+      },
+    },
 
   }), ModelBase, {
     sort: {
       default: 'createdAt',
-      allow: ['id', 'status', 'date', 'updatedAt', 'createdAt'],
+      allow: ['id', 'number', 'date', 'updatedAt', 'createdAt'],
     },
     writableCols: [
-      'status', 'current', 'history', 'date',
+      'number', 'current', 'history', 'date',
       'quarter', 'month', 'weekday', 'hour',
       'minute', 'result',
     ],
     editableCols: [],
     /** 只有管理员才可以修改的字段 */
-    onlyAdminCols: ['status'],
+    onlyAdminCols: [],
 
     /** 定义允许包含返回的字段，不设置为全部 */
     allowIncludeCols: [
-      'status', 'current', 'date', 'result',
+      'number', 'current', 'date', 'result',
     ],
   });
 

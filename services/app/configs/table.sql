@@ -98,7 +98,7 @@ DROP TABLE IF EXISTS `imonline`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `imonline` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `status` enum('predicted','predicting') NOT NULL DEFAULT 'predicted',
+  `number` varchar(12) NOT NULL,
   `current` int(11) NOT NULL,
   `history` int(11) NOT NULL,
   `date` datetime NOT NULL,
@@ -110,6 +110,7 @@ CREATE TABLE `imonline` (
   `result` varchar(5) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
+  UNIQUE KEY `number` (`number`),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2711 DEFAULT CHARSET=utf8 COMMENT='QQ在线人数';
 /*!40101 SET character_set_client = @saved_cs_client */;

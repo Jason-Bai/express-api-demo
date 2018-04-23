@@ -96,8 +96,13 @@ const translate = (tencent) => {
 
   const minute = date.minutes();
 
+  const currentNumber = ((hour * 60) + minute).toString().padStart(4, '0');
+
+  const number = date.format(`YYYYMMHH${currentNumber}`);
+
   const imonline = {
     date: date.format(),
+    number,
     current,
     history,
     quarter,

@@ -8,3 +8,13 @@ ALTER TABLE `imonline` CHANGE `type` `status` enum('predicted','predicting') NOT
 ```
 ALTER TABLE `imonline` DROP `predictably`;
 ```
+
+# 去掉status
+```
+ALTER TABLE `imonline` DROP `status`;
+```
+
+# 加上number
+```
+ALTER TABLE `imonline` ADD COLUMN `number` varchar(12) NOT NULL AFTER `id`;
+```

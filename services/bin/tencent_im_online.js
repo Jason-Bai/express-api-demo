@@ -45,14 +45,19 @@ const getImOnline = (data) => {
 
   const date = U.moment();
 
-  const hour = date.hour();
+  const hour = date.hours();
 
-  const minute = date.minute();
+  const minute = date.minutes();
+
+  const currentNumber = ((hour * 60) + minute).toString().padStart(4, '0');
+
+  const number = date.format(`YYYYMMHH${currentNumber}`);
 
   const result = getResult(current);
 
   const imonline = {
     date: date.format(),
+    number,
     current,
     history,
     quarter,
