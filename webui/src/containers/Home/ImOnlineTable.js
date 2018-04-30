@@ -1,15 +1,16 @@
 import React from 'react';
 import Table from 'components/Table';
 import Number from 'components/Number';
+import './imonlinetable.css';
 
 const renderNumber = (number) => {
   const render = (index, record) => {
     const included = record.result.includes(number);
     if (included) {
       const props = {
-        height: '25px',
-        width: '25px',
-        lineHeight: '25px',
+        height: '20px',
+        width: '20px',
+        lineHeight: '20px',
         backgroundColor: '#FF0000',
         number,
       };
@@ -23,7 +24,7 @@ const renderNumber = (number) => {
   };
 
   const numberColumn = {
-    title: <Number number={number} />,
+    title: <Number height={"30px"} width={"30px"} lineHeight={"30px"} number={number} />,
     dataIndex: `index${number}`,
     className: 'text-center column-number',
     width: '7%',

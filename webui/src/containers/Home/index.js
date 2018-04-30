@@ -2,6 +2,7 @@ import React from 'react';
 import NodeSchedule from 'node-schedule';
 import Helmet from 'components/Helmet';
 import ImOnlineTable from './ImOnlineTable';
+import PredictionNumber from './PredictionNumber';
 import HomeAPI from 'apis/home';
 import './home.css';
 
@@ -16,7 +17,7 @@ class Home extends React.Component {
     this.state = {
       error: null,
       page: 1,
-      pageSize: 15,
+      pageSize: 30,
       dataSource: [],
       total: 0,
     };
@@ -72,6 +73,7 @@ class Home extends React.Component {
     return (
       <div className="wrapper-home">
         <Helmet title="首页" metas={metas} />
+        <PredictionNumber dataSource={dataSource} />
         <ImOnlineTable
           page={page}
           pageSize={pageSize}

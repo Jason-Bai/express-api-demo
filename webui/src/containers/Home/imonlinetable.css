@@ -1,0 +1,14 @@
+.imonline-table .wrapper-table .ant-table-thead > tr > th {
+  padding: 10px;
+}
+.imonline-table .wrapper-table .ant-table-thead > tr > th.column-number span {
+  display: block;
+  margin-left: 25%;
+}
+.imonline-table .wrapper-table .ant-table-tbody > tr > td {
+  padding: 8px;
+}
+.imonline-table .wrapper-table .ant-table-tbody > tr > td.column-number div {
+  display: block;
+  margin-left: 35%;
+}

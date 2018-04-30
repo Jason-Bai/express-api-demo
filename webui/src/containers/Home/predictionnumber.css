@@ -1,0 +1,22 @@
+.prediction-number {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.prediction-number .stats-numbers {
+  width: 10%;
+  float: left;
+}
+
+.prediction-number .prediction-results {
+  width: 90%;
+  float: left;
+}
+
+.prediction-results .prediction-result{
+  width: 10%;
+  display: inline-block;
+}
+
+
