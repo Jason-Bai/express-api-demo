@@ -65,7 +65,7 @@ const getStatsNumbers = (item) => {
 const predictNumbers = (statsNumbers) => {
   const sortedConditions = STATS_NUMBERS.map((statsNumber) => `num${statsNumber}`);
   const iteratees = [].concat(['outOfMind'], sortedConditions);
-  const orders = ['desc', 'asc', 'asc', 'asc'];
+  const orders = ['desc', 'asc', 'asc', 'desc'];
   const results = _.chain(statsNumbers).orderBy(iteratees, orders).reverse().value();
 
   return results;
