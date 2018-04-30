@@ -28,7 +28,7 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    this.schedule = NodeSchedule.scheduleJob('6 */1 * * * *', () => {
+    this.schedule = NodeSchedule.scheduleJob('8 */1 * * * *', () => {
       this.getList();
     });
   }
