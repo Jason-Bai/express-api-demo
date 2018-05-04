@@ -8,9 +8,9 @@ const renderNumber = (number) => {
     const included = record.result.includes(number);
     if (included) {
       const props = {
-        height: '20px',
-        width: '20px',
-        lineHeight: '20px',
+        height: '25px',
+        width: '25px',
+        lineHeight: '25px',
         backgroundColor: '#FF0000',
         number,
       };

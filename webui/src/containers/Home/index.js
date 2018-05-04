@@ -17,7 +17,7 @@ class Home extends React.Component {
     this.state = {
       error: null,
       page: 1,
-      pageSize: 30,
+      pageSize: 15,
       dataSource: [],
       total: 0,
     };
